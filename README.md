@@ -1,15 +1,15 @@
 # debugger
 
-1. 프로젝트명
+#1. 프로젝트명
 
-2. 프로젝트 설명
+#2. 프로젝트 설명
 
-3. 목차
+#3. 목차
 
-4. 실행방법
+#4. 실행방법
 Rstudio를 사용하여 html,css 코드를 작성하여 적용한 후 파이썬과 R 언어를 실행하여 html,css,js로 구현한 검색엔진으로 여러개의 카테고리를 몇 개 선택하여 검색 하면서 가장 많이 검색을 한 카테고리를 데이터 R의 데이터 분석을 통하여 사용자가 가장 많이 검색한 카테고리를 선정하여 선정된 카테고리에 대한 광고를 띄우는 방식
 
-5. 팀원 및 참고자료
+#5. 팀원 및 참고자료
 이준서: 
 
 R 사용법
@@ -96,26 +96,26 @@ for x in myresult:
 
 import requests
 
-# 검색어
+검색어
 query = '파이썬'
 
-# Naver API 키
+Naver API 키
 client_id = 'your_client_id'
 client_secret = 'your_client_secret'
 
-# 뉴스 검색 API 호출
+뉴스 검색 API 호출
 url = f'https://openapi.naver.com/v1/search/news.json?query={query}&display=5&start=1&sort=sim'
 headers = {'X-Naver-Client-Id': client_id, 'X-Naver-Client-Secret': client_secret}
 response = requests.get(url, headers=headers)
 news_items = response.json()['items']
 
-# 광고 검색 API 호출
+광고 검색 API 호출
 url = f'https://openapi.naver.com/v1/search/adult.json?query={query}&display=5&start=1'
 headers = {'X-Naver-Client-Id': client_id, 'X-Naver-Client-Secret': client_secret}
 response = requests.get(url, headers=headers)
 ad_items = response.json()['items']
 
-# 뉴스와 광고를 출력
+ 뉴스와 광고를 출력
 print('검색어:', query)
 print('뉴스:')
 for item in news_items:
@@ -134,30 +134,30 @@ import tensorflow as tf
 from tensorflow.keras.preprocessing.text import Tokenizer
 from tensorflow.keras.preprocessing.sequence import pad_sequences
 
-# 데이터 로드
+데이터 로드
 df = pd.read_csv('ad_data.csv')
 texts = df['text'].tolist()
 labels = df['label'].tolist()
 
-# 토큰화
+토큰화
 tokenizer = Tokenizer()
 tokenizer.fit_on_texts(texts)
 word_index = tokenizer.word_index
 sequences = tokenizer.texts_to_sequences(texts)
 data = pad_sequences(sequences, maxlen=50)
 
-# 모델 생성
+모델 생성
 model = tf.keras.Sequential([
     tf.keras.layers.Embedding(len(word_index) + 1, 50),
     tf.keras.layers.LSTM(64),
     tf.keras.layers.Dense(1, activation='sigmoid')
 ])
 
-# 모델 학습
+모델 학습
 model.compile(loss='binary_crossentropy', optimizer='adam', metrics=['accuracy'])
 model.fit(data, labels, epochs=10)
 
-# 검색어 예측
+검색어 예측
 query = '파이썬'
 query_seq = tokenizer.texts_to_sequences([query])
 query_data = pad_sequences(query_seq, maxlen=50)
@@ -165,9 +165,9 @@ result = model.predict(query_data)[0]
 
 if result > 0
 
-6. 프로젝트에 기여하는 방법
+#6. 프로젝트에 기여하는 방법
 ai 딥러닝 학습으로 광고주 광고 프로그램을 사람들이 광고주(기업)를 통해 사용자를 구매하고 공급하여 수익을 충분히 얻을 수 있습니다. 그리하여 해당 프로그램으로 사용자와 광고주(기업)은 긍정적인 피드백을 통하여 해당 프로그램에서 추가기능이나 추가적인 개선 작업을 하면서 사용자들의 보안성, 안정성을 생각하면서 사용자들의 결함이나 피드백을 반영하여 업데이트를 하면서 최신으로 유지를 한다.
 
-7. 참고사항
+#7. 참고사항
 
-8. 마무리
+#8. 마무리
